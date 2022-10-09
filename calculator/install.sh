@@ -1,0 +1,1 @@
+cp -v ./dist/calculator.apk "/run/user/1000/gvfs/mtp:host=Razer_Razer_Phone_2_181911V01506334/Internal shared storage/Download/calculator.apk"
