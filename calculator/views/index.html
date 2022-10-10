@@ -1,3 +1,9 @@
+<!--
+  "I pledge my honor that I have abided by the Stevens Honor System."
+
+  It has been a while since I have written front-end code, so please excuse my spaghetti.
+-->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -174,16 +180,19 @@
   <textarea class="textField" id="mathArea" readonly></textarea>
 
   <!--special operation buttons (sin, cos, etc)-->
-  <div class="lowerHorizontalButtons" style="bottom:74%; overflow-x:scroll; overflow-y: hidden; white-space: nowrap;">
+  <div class="lowerHorizontalButtons" style="overflow-x:scroll; overflow-y: hidden; white-space: nowrap;">
     <div class="button-horizontal" onclick="registerSpecial(this)" style="width:23%"><div class="button-text">sin()</div></div>
     <div class="button-horizontal" onclick="registerSpecial(this)" style="width:23%"><div class="button-text">cos()</div></div>
     <div class="button-horizontal" onclick="registerSpecial(this)" style="width:23%"><div class="button-text">tan()</div></div>
     <div class="button-horizontal" onclick="registerSpecial(this)" style="width:23%"><div class="button-text">√()</div></div>
     <div class="button-horizontal" onclick="register(this)" style="width:23%"><div class="button-text">^</div></div>
+    <div class="button-horizontal" onclick="register(this)" style="width:23%"><div class="button-text">(</div></div>
+    <div class="button-horizontal" onclick="register(this)" style="width:23%"><div class="button-text">)</div></div>
+    <div class="button-horizontal" onclick="register(this)" style="width:23%"><div class="button-text">PI</div></div>
   </div>
 
   <!--arrow keys and clear/delete-->
-  <div class="lowerHorizontalButtons">
+  <div class="lowerHorizontalButtons" style="bottom:74%;">
     <div class="button-horizontal" onclick="moveCursor(1)"><div class="button-text">←</div></div>
     <div class="button-horizontal" onclick="moveCursor(-1)"><div class="button-text">→</div></div>
     <div class="button-horizontal" style="background-color:rgb(247, 69, 69)" onclick="registerOperation(this)"><div class="button-text">CLR</div></div>
