@@ -24,6 +24,8 @@
 <script src="../assets/popper.min.js"></script>
 <script src="../assets/bootstrap.min.js"></script>
 <style type="text/css">
+
+  /*THEME DEFINITIONS*/
   .theme-light {
     --color-primary: #fff;
     --color-secondary: rgb(205, 205, 205);
@@ -46,6 +48,8 @@
   body{
     background-color: var(--color-primary);
   }
+
+  /* BUTTON DESIGNS*/
 
   .button-numberField {
     display:inline-block;
@@ -93,7 +97,7 @@
     pointer-events: none;
   }
 
-  /*button for toggling theme*/
+  /*THEME SWITCHER*/
   .themeSwitcher {
     position: absolute;
     left:0;
@@ -114,6 +118,8 @@
     height:45px;
     pointer-events: none;
   }
+
+  /*AREAS / CONTAINERS*/
   .lowerHorizontalButtons {
     position:absolute;
     bottom:66.5%;
@@ -159,10 +165,15 @@
     background-color: var(--color-third);
   }
 </style>
+  <!--theme switcher-->
   <div class="themeSwitcher" id="themeSwitcher" onclick="toggleTheme()">
     <div class="themeIcon"></div>
   </div>
+
+  <!--text ara-->
   <textarea class="textField" id="mathArea" readonly></textarea>
+
+  <!--special operation buttons (sin, cos, etc)-->
   <div class="lowerHorizontalButtons" style="bottom:74%; overflow-x:scroll; overflow-y: hidden; white-space: nowrap;">
     <div class="button-horizontal" onclick="registerSpecial(this)" style="width:23%"><div class="button-text">sin()</div></div>
     <div class="button-horizontal" onclick="registerSpecial(this)" style="width:23%"><div class="button-text">cos()</div></div>
@@ -170,12 +181,16 @@
     <div class="button-horizontal" onclick="registerSpecial(this)" style="width:23%"><div class="button-text">√()</div></div>
     <div class="button-horizontal" onclick="register(this)" style="width:23%"><div class="button-text">^</div></div>
   </div>
+
+  <!--arrow keys and clear/delete-->
   <div class="lowerHorizontalButtons">
     <div class="button-horizontal" onclick="moveCursor(1)"><div class="button-text">←</div></div>
     <div class="button-horizontal" onclick="moveCursor(-1)"><div class="button-text">→</div></div>
     <div class="button-horizontal" style="background-color:rgb(247, 69, 69)" onclick="registerOperation(this)"><div class="button-text">CLR</div></div>
     <div class="button-horizontal" style="background-color:rgb(247, 69, 69)" onclick="registerOperation(this)"><div class="button-text">DEL</div></div>
   </div>
+
+  <!--the keypad containing all numbers, period, equals button and basic operations (+-x/)-->
   <div class="numberContainer">
     <div class="button-numberField" onclick="register(this)"><div class="button-text">7</div></div>
     <div class="button-numberField" onclick="register(this)"><div class="button-text">8</div></div>
@@ -212,6 +227,7 @@
   let cursorPosition = 0;
   let cursorOn = true;
 
+  //define the text field and update the theme on load
   window.onload = function() {
     updateTheme();
     mathArea = document.getElementById("mathArea");
@@ -222,6 +238,9 @@
     let relativeCursorPosition = currentEquation.length-cursorPosition;
     mathArea.value = [currentEquation.slice(0, relativeCursorPosition), (cursorOn)? "▮" : "▯", [currentEquation.slice(relativeCursorPosition)]].join('');
   }
+
+
+  //CURSOR MANAGEMENT
 
   //move the cursor position
   function moveCursor(amt) {
@@ -235,6 +254,9 @@
     updateEquation();
   }, 500);
 
+
+  //THEME MANAGEMENT
+
   //function for toggling the global theme
   function toggleTheme() {
     currentTheme = (currentTheme === "dark")? "light" : "dark";
@@ -247,6 +269,9 @@
     document.documentElement.className = `theme-${currentTheme}`;
   }
 
+
+  //BUTTON REGISTERS
+
   //registers for buttons
   function register(element) {
     let thisChar = element.children[0].innerHTML;
@@ -258,7 +283,7 @@
     updateEquation();
   }
 
-  //register special (multicharacter things)
+  //register special (multicharacter things (sin, cos, etc))
   function registerSpecial(element) {
     let thisChar = element.children[0].innerHTML;
     let relativeCursorPosition = currentEquation.length-cursorPosition;
@@ -269,6 +294,7 @@
     updateEquation();
   }
 
+  //register operation keys (like evaluation, deletion, and clearing)
   function registerOperation(element) {
     let thisOperation = element.children[0].innerHTML;
     switch(thisOperation) {
